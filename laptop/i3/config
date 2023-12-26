@@ -32,19 +32,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 # Use xbacklight to adjust brightness
 
 # Increase brightness
-bindsym XF86MonBrightnessUp exec brightnessctl set +5% 5 && expr $(brightnessctl get) \* 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness) > /home/arthur/.config/brightness && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 # Decrease brightness
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && expr $(brightnessctl get) \* 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness) > /home/arthur/.config/brightness && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -61,7 +60,7 @@ set $right l
 # tiling_drag modifier titlebar
 
 # start a terminal
-bindsym Mod1+Return exec gnome-terminal
+bindsym Mod1+Return exec konsole
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -208,7 +207,7 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
 	position top
-        status_command i3status -c /home/arthur/.config/i3status/i3status.conf
+        status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
 }
 
 #######################################################################
