@@ -39,25 +39,62 @@ awk -v type=$TYPE -v percent=$PERCENT '
 END {
 	if (type == "swap") {
 		free=swap_free/1024/1024
-		used=(swap_total-swap_free)/1024/1024
+		if (swap_total-swap_free > 1048576) { 
+			used=(swap_total-swap_free)/1024/1024
+		} else {
+			used=(swap_total-swap_free)/1024
+		}
 		total=swap_total/1024/1024
 	} else {
 		free=mem_free/1024/1024
-		used=(mem_total-mem_free)/1024/1024
+		if (mem_total-mem_free > 1048576) { 
+			used=(mem_total-mem_free)/1024/1024
+		} else {
+			used=(mem_total-mem_free)/1024
+		}
 		total=mem_total/1024/1024
 	}
 
 	pct=0
 	if (total > 0) {
-		pct=used/total*100
+		if (type == "swap") {
+			pct=((swap_total-swap_free)/1024/1024)/(swap_total/1024/1024)*100
+		} else {
+			pct=((mem_total-mem_free)/1024/1024)/(mem_total/1024/1024)*100
+		}
 	}
 
 	# full text
-	if (percent == "true" ) {
-		printf("%.1fG/%.1fG (%.f%%)\n", used, total, pct)
+	if (type == "swap") {
+		if (percent == "true" ) {
+			if (swap_total-swap_free > 1048576) { 
+				printf("%.2fG/%.2fG (%.f%%)\n", used, total, pct)
+			} else {
+				printf("%.fM/%.2fG (%.f%%)\n", used, total, pct)
+			}
+		} else {
+			if (swap_total-swap_free > 1048576) { 
+				printf("%.2fG/%.2fG\n", used, total)
+			} else {
+				printf("%.fM/%.2fG\n", used, total)
+			}
+		}
 	} else {
-		printf("%.1fG/%.1fG\n", used, total)
+		if (percent == "true" ) {
+			if (mem_total-mem_free > 1048576) { 
+				printf("%.2fG/%.2fG (%.f%%)\n", used, total, pct)
+			} else {
+				printf("%.fM/%.2fG (%.f%%)\n", used, total, pct)
+			}
+		} else {
+			if (mem_total-mem_free > 1048576) { 
+				printf("%.2fG/%.2fG\n", used, total)
+			} else {
+				printf("%.fM/%.2fG\n", used, total)
+			}
+		}
 	}
+
 	# short text
 	printf("%.f%%\n", pct)
 

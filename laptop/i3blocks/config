@@ -36,7 +36,7 @@ markup=none
 [cpu_usage]
 command=$SCRIPT_DIR/cpu_usage/cpu_usage
 label=CPU 
-interval=10
+interval=5
 min_width=CPU 100.00%
 T_WARN=50
 T_CRIT=80
@@ -53,13 +53,13 @@ COLOR_CRIT=#FF0000
 command=$SCRIPT_DIR/memory/memory
 label=RAM  
 separator=false
-interval=10
+interval=1
 
 [memory]
 command=$SCRIPT_DIR/memory/memory
 label=SWAP 
 instance=swap
-interval=10
+interval=1
 
 # Disk usage
 #
@@ -106,7 +106,7 @@ interval=1
 [battery]
 command=$SCRIPT_DIR/battery/battery
 label=⚡
-interval=30
+interval=1
 
 # Keyboard layout
 [xkb_layout]
@@ -118,4 +118,4 @@ interval=persist
 #
 [time]
 command=date '+%H:%M - %d/%m/%Y'
-interval=5
+interval=1
