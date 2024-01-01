@@ -1,0 +1,53 @@
+# Simbolos: ã Ã â Â á Á à À õ Õ ô Ô ó Ó ê Ê é É í Í ú Ú ç Ç
+# ~ : <apostrophe>
+# ^ : <quotedbl>
+# ´ : <bracketleft>
+# ` : <braceleft>
+
+# Letra Aa
+
+<Multi_key> <apostrophe> <a> : "ã"
+<Multi_key> <apostrophe> <A> : "Ã"
+
+<Multi_key> <quotedbl> <a> : "â"
+<Multi_key> <quotedbl> <A> : "Â"
+
+<Multi_key> <bracketleft> <a> : "á"
+<Multi_key> <bracketleft> <A> : "Á"
+
+<Multi_key> <braceleft> <a> : "à"
+<Multi_key> <braceleft> <A> : "À"
+
+# Letra Oo
+
+<Multi_key> <apostrophe> <o> : "õ"
+<Multi_key> <apostrophe> <O> : "Õ"
+
+<Multi_key> <quotedbl> <o> : "ô"
+<Multi_key> <quotedbl> <O> : "Ô"
+
+<Multi_key> <bracketleft> <o> : "ó"
+<Multi_key> <bracketleft> <O> : "Ó"
+
+# Letra Ee
+
+<Multi_key> <quotedbl> <e> : "ê"
+<Multi_key> <quotedbl> <E> : "Ê"
+
+<Multi_key> <bracketleft> <e> : "é"
+<Multi_key> <bracketleft> <E> : "É"
+
+# Letra Ii
+
+<Multi_key> <bracketleft> <i> : "í"
+<Multi_key> <bracketleft> <I> : "í"
+
+# Letra Uu
+
+<Multi_key> <bracketleft> <u> : "ú"
+<Multi_key> <bracketleft> <U> : "Ú"
+
+# Cedilla
+
+<Multi_key> <semicolon> : "ç"
+<Multi_key> <colon> : "Ç"

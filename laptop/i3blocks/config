@@ -109,13 +109,12 @@ label=⚡
 interval=1
 
 # Keyboard layout
-[xkb_layout]
-command=$SCRIPT_DIR/xkb_layout/xkb_layout
-min_width=br
-interval=persist
+# [xkb_layout]
+# command=$SCRIPT_DIR/xkb_layout/xkb_layout
+# min_width=br
+# interval=persist
 
 # Date Time
-#
 [time]
 command=date '+%H:%M - %d/%m/%Y'
 interval=1
